@@ -55,7 +55,11 @@ public class WebSecurityConfig {
                 )
                 .exceptionHandling((ex) -> ex
                         .accessDeniedPage("/access_denied") // Custom access denied page
-                );
+                )
+                .headers((headers) -> headers
+                        .frameOptions((frameOptions) -> frameOptions.sameOrigin()) // Allow frames only from the same origin
+                )
+        ;
 
         return http.build();
     }
