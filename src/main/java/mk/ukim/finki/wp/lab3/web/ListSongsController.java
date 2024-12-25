@@ -108,9 +108,9 @@ public class ListSongsController {
         return "redirect:/songs";
     }
 
-    @GetMapping("/access_denied")
-    public String getAccessDeniedPage(Model model) {
-        //model.addAttribute("bodyContent", "access-denied");
-        return "access-denied";
-    }
+//    @GetMapping("/access_denied")
+//    public String getAccessDeniedPage(Model model) {
+//        //model.addAttribute("bodyContent", "access-denied");
+//        return "access-denied";
+//    }
 }

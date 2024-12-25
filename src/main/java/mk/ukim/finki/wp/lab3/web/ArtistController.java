@@ -50,9 +50,9 @@ public class ArtistController {
         return "redirect:/songDetails?trackId=" + trackId;
     }
 
-    @GetMapping("/access_denied")
-    public String getAccessDeniedPage(Model model) {
-       // model.addAttribute("bodyContent", "access-denied");
-        return "access-denied";
-    }
+//    @GetMapping("/access_denied")
+//    public String getAccessDeniedPage(Model model) {
+//       // model.addAttribute("bodyContent", "access-denied");
+//        return "access-denied";
+//    }
 }
