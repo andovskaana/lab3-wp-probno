@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security6">
+<head>
+    <meta charset="utf-8">
+    <title>Songs Homepage - Welcome to My Music Store</title>
+    <style type="text/css">
+        body {
+            width: 800px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Welcome to My Music Store</h1>
+    <div class="nav-item" sec:authorize="isAnonymous()">
+        <a class="btn btn-light btn-sm ml-3" href="/login">
+            <i class="fa-solid fa-right-to-bracket"></i> Login
+        </a>
+    </div>
+
+
+    <div class="nav-item" sec:authorize="isAuthenticated()">
+        <a href="#" class="btn btn-light btn-sm ml-3" sec:authentication="name">
+        </a>
+    </div>
+
+    <div class="nav-item" sec:authorize="isAuthenticated()">
+        <a class="btn btn-light btn-sm ml-3" href="/logout">
+            <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </a>
+    </div>
+
+</header>
+<main>
+<!--    <h2>Choose a song:</h2>-->
+<!--    <form action="/artist" method="get">-->
+<!--        &lt;!&ndash; Thymeleaf loop to dynamically display each song as a radio button &ndash;&gt;-->
+<!--        <div th:each="song : ${songs}">-->
+<!--&lt;!&ndash;            <input type="radio" name="trackId" th:value="${song.trackId}">&ndash;&gt;-->
+<!--            <input type="radio" name="id" th:value="${song.id}">-->
+<!--            <span th:text="'Title: ' + ${song.title} + ', Genre: ' + ${song.genre} + ', Release Year: ' + ${song.releaseYear}"></span>-->
+<!--            <br/>-->
+<!--        </div>-->
+<!--        <input type='submit' value='Submit'>-->
+<!--    </form>-->
+
+    <h2>Manage Songs:</h2>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Genre</th>
+            <th>Release Year</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="song : ${songs}">
+            <td th:text="${song.title}"></td>
+            <td th:text="${song.genre}"></td>
+            <td th:text="${song.releaseYear}"></td>
+            <td>
+                <th:block sec:authorize="hasRole('ADMIN')">
+                <a th:href="@{/songs/edit/{id}(id=${song.id})}">Edit</a> |
+                <a th:href="@{/songs/delete/{id}(id=${song.id})}" onclick="return confirm('Are you sure?')">Delete</a>
+                </th:block>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <a href="/songs/add-form">Add New Song</a>
+</main>
+</body>
+</html>
