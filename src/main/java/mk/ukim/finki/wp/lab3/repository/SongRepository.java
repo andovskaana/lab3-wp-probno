@@ -11,4 +11,4 @@ import java.util.List;
 public interface SongRepository extends JpaRepository<Song, Long> {
     // Custom query for finding songs by album ID
     List<Song> findAllByAlbum_Id (Long albumId);
-}
+}// add comment see
